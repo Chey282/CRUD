@@ -73,12 +73,6 @@ function Read() {
     const [open, setOpen] = useState(false);
 
     const modalOpen = () => setOpen(!open);
-    // const handleOpen = () => {
-    //     setOpen(true)
-    // };
-    // const handleClose = () => {
-    //     setOpen(false);
-    // };
 
 
     return (
@@ -122,9 +116,6 @@ function Read() {
                                         <List.Item>{data.lineofBusiness}</List.Item>
                                     </List>
                                 </Table.Cell>
-                                {/* <Table.Cell>{data.firstName}</Table.Cell>
-                                <Table.Cell>{data.lastName}</Table.Cell> */}
-                                
                                 <Table.Cell> 
                                     {/* <Link to='/company/edit'>
                                         <Button primary onClick={() => setData(data)}>
@@ -137,42 +128,26 @@ function Read() {
                                         </Button>
                                     </Link> */}
                                     <Popup
-                                                    content='I will not flip!'
-                                                    on='click'
-                                                    pinned
-                                                    position="bottom right"
-                                                    trigger={<Button content='Button' />}
-                                                >
-                                                    <Grid>
-      <Grid.Row>
-        {/* <Popup
-          trigger={<Button color='blue' content='Edit' fluid />}
-          content=''
-          position='top center'
-          size='tiny'
-          inverted
-        /> */}
-        <Link to='/company/edit'>
-        <button onClick={() => setData(data)}
-        style={{background:"transparent", border:"none", marginLeft:"50px"}}
-        >Edit</button>
-        </Link>
-      </Grid.Row>
-      <hr/>
-      <Grid.Row>
-        {/* <Popup
-          trigger={<Button color='red' content='Delete' fluid />}
-          content=''
-          position='top center'
-          size='tiny'
-          inverted
-        /> */}
-        <button onClick={() => onDelete(data.id)}
-        style={{background:"transparent", border:"none"}}
-        color="red">Delete</button>
-      </Grid.Row>
-    </Grid>
-                                                </Popup>
+                                        content=''
+                                        on='click' pinned 
+                                        position="bottom right" trigger={<Button content='Button' />}>
+                                    <Grid>
+                                        <Grid.Row>
+                                            <Link to='/company/edit'>
+                                            <button onClick={() => setData(data)}
+                                            style={{background:"transparent", border:"none", marginLeft:"50px"}}
+                                            >Edit</button>
+                                            </Link>
+                                        </Grid.Row>
+                                        <hr/>
+                                        <Grid.Row>
+                                            <button onClick={() => onDelete(data.id)}
+                                            style={{background:"transparent", border:"none"}}
+                                            color="red">Delete</button>
+                                        </Grid.Row>
+                                    </Grid>
+                                    </Popup>
+                                    
                                         <Button color='red' onClick={() => onDelete(data.id)}>
                                         <MdIcons.MdDelete color='white' fontSize="1.3rem" />
                                         </Button>
