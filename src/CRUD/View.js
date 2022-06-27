@@ -37,6 +37,23 @@ function View() {
         navigate("/company/list");
     }
     return (
+        <>
+        <div className='main text-black' style={{width:"100%",height:"270px",backgroundColor:"aqua",marginTop:"-25px"}}>
+            {/* <h1 style={{marginLeft:"120px",marginTop:"40px",fontSize:"40px"}}>{companyName}</h1>
+            <p style={{marginLeft:"120px",marginTop:"100px",color:"black"}}>{email}</p>
+            <p style={{marginLeft:"120px",marginTop:"60px"}}>{companyNumber}</p> */}
+            <div>
+                <ul style={{marginLeft:"120px",listStyle:"none",marginTop:"50px"}}>
+                    <li style={{fontSize:"40px"}}>{companyName}</li>
+                    <li style={{marginTop:"50px"}}>{email}</li>
+                    <li style={{marginTop:"10px"}}>{companyNumber}</li>
+                </ul>
+            </div>
+        </div>
+        <div className='text-black text-lg-center' 
+            style={{backgroundColor:"gray",width:"300px",height:"400px",float:"right",marginRight:"180px",marginTop:"-200px"}}>
+            Image
+        </div>
         <div className='text-lg-center p-lg-5 text-black'>
             <Form className="create-form">
                 <Form.Field>
@@ -97,6 +114,7 @@ function View() {
                 <Button primary type="submit" onClick={backHome} >Go back home</Button>
             </Form>
         </div>
+        </>
     )
 }
 

@@ -31,11 +31,12 @@ function Read() {
     }, []);
 
     const setData = (data) => {
-        let { id, image, companyName, companyNumber, uniqueNumber, lineofBusiness } = data;
+        let { id, image, companyName, email, companyNumber, uniqueNumber, lineofBusiness } = data;
         localStorage.setItem('ID', id);
         // localStorage.setItem('First Name', firstName);
         // localStorage.setItem('Last Name', lastName);
         localStorage.setItem('Image', image);
+        localStorage.setItem('Email',email);
         localStorage.setItem('Company Name', companyName);
         localStorage.setItem('Company Number', companyNumber);
         localStorage.setItem('Unique Number', uniqueNumber);
@@ -125,11 +126,11 @@ function Read() {
                                 <Table.Cell>{data.lastName}</Table.Cell> */}
                                 
                                 <Table.Cell> 
-                                    <Link to='/company/edit'>
+                                    {/* <Link to='/company/edit'>
                                         <Button primary onClick={() => setData(data)}>
                                         <BiIcons.BiEdit color='white' fontSize="1.3rem"/>
                                         </Button>
-                                    </Link>
+                                    </Link> */}
                                     {/* <Link to='/company/view'>
                                         <Button color='green' onClick={() => setData(data)}>
                                         <AiIcons.AiFillEye color='white' fontSize="1.3rem"/>
@@ -151,8 +152,13 @@ function Read() {
           size='tiny'
           inverted
         /> */}
-        <Button color="blue">Edit</Button>
+        <Link to='/company/edit'>
+        <button onClick={() => setData(data)}
+        style={{background:"transparent", border:"none", marginLeft:"50px"}}
+        >Edit</button>
+        </Link>
       </Grid.Row>
+      <hr/>
       <Grid.Row>
         {/* <Popup
           trigger={<Button color='red' content='Delete' fluid />}
@@ -161,7 +167,9 @@ function Read() {
           size='tiny'
           inverted
         /> */}
-        <Button color="red">Delete</Button>
+        <button onClick={() => onDelete(data.id)}
+        style={{background:"transparent", border:"none"}}
+        color="red">Delete</button>
       </Grid.Row>
     </Grid>
                                                 </Popup>

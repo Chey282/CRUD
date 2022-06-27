@@ -7,6 +7,7 @@ function Update() {
     let navigate = useNavigate();
     const [id, setID] = useState(null);
     const [image, setImage] = useState('');
+    const [email, setEmail] = useState('')
     const [companyName, setCompanyName] = useState('');
     const [companyNumber, setCompanyNumber] = useState('');
     const [uniqueNumber, setUniqueNumber] = useState('');
@@ -16,6 +17,7 @@ function Update() {
         setID(localStorage.getItem('ID'))
         setImage(localStorage.getItem('Image'));
         setCompanyName(localStorage.getItem('Company Name'));
+        setEmail(localStorage.getItem('Email'));
         setCompanyNumber(localStorage.getItem('Company Number'));
         setUniqueNumber(localStorage.getItem('Unique Number'));
         setLineofBusiness(localStorage.getItem('Line of Business'));
@@ -24,6 +26,7 @@ function Update() {
     const updateAPIData = () => {
         axios.put(`https://62a6f21797b6156bff833b05.mockapi.io/CRUD/${id}`, {
             image,
+            email,
             companyName,
             companyNumber,
             uniqueNumber,
@@ -32,6 +35,11 @@ function Update() {
             navigate('/company/list')
         })
     }
+
+    const goBack = () =>{
+        navigate("/company/list")
+    } 
+
     return (
         <div className="container-fluid">
            
@@ -51,6 +59,10 @@ function Update() {
                     <input placeholder='Company Name' value={companyName} onChange={(e) => setCompanyName(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
+                    <label>Email Address</label>
+                    <input placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
+                </Form.Field>
+                <Form.Field>
                     <label>Company Mobile Number</label>
                     <input placeholder='Company Number' value={companyNumber} onChange={(e) => setCompanyNumber(e.target.value)}/>
                 </Form.Field>
@@ -62,7 +74,10 @@ function Update() {
                     <label>Line of Business</label>
                     <input placeholder='Line of Business' value={lineofBusiness} onChange={(e) => setLineofBusiness(e.target.value)}/>
                 </Form.Field>
-                <Button type='submit' onClick={updateAPIData}>Update</Button>
+                <Button color='blue' type='submit' onClick={updateAPIData}>Update</Button>
+                <Button color="red" onClick={goBack}>
+                    Cancel
+                 </Button>
             </Form>
         </div>
         </div>
