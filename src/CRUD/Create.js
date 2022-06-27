@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react'
 import axios from 'axios';
 import { useNavigate, NavLink } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function Create() {
     let navigate = useNavigate();
@@ -27,27 +28,42 @@ function Create() {
         const url = `https://62a6f21797b6156bff833b05.mockapi.io/CRUD`
 
         // const formData = new FormData()
-
         // formData.append('image',image)
-
         // console.log("hello charan")
-
-            axios.post(url, {
-                // firstName,
-                // lastName,
-                image,
-                companyName,
-                email,
-                companyNumber,
-                uniqueNumber,
-                lineofBusiness,
-                address
-                // checkbox
+            if(companyName.length <= 3){
+                // alert("invalid name of company");
+                return Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'All fields are mandatory!',
+                    showConfirmButton: true
+                  })
+            }else if(companyNumber.length !==10){
+                return Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Company Number is mandatory!',
+                    showConfirmButton: true
+                  })
+            }else{
+                axios.post(url, {
+                    // firstName,
+                    // lastName,
+                    image,
+                    companyName,
+                    email,
+                    companyNumber,
+                    uniqueNumber,
+                    lineofBusiness,
+                    address
+                    // checkbox
+                })
+    
+            .then(() => {
+                navigate('/company/list');
             })
-
-        .then(() => {
-            navigate('/company/list');
-        })
+            }
+            
     }
 
     const goBack = () =>{
@@ -67,27 +83,27 @@ function Create() {
                 </Form.Field>
                 <Form.Field>
                     <label>Company Name</label>
-                    <input required placeholder='Company Name' onChange={(e) => setCompanyName(e.target.value)}/>
+                    <input  placeholder='Company Name' onChange={(e) => setCompanyName(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
                     <label>Email Address</label>
-                    <input required placeholder='Email' onChange={(e) => setEmail(e.target.value)}/>
+                    <input  placeholder='Email' onChange={(e) => setEmail(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
                     <label>Company Mobile Number</label>
-                    <input required placeholder='Company Number' onChange={(e) => setCompanyNumber(e.target.value)}/>
+                    <input  placeholder='Company Number' onChange={(e) => setCompanyNumber(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
                     <label>Unique Company Number</label>
-                    <input required placeholder='Unique Number' onChange={(e) => setUniqueNumber(e.target.value)}/>
+                    <input  placeholder='Unique Number' onChange={(e) => setUniqueNumber(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
                     <label>Line of business of the company</label>
-                    <input required placeholder='Line of Business' onChange={(e) => setLineofBusiness(e.target.value)}/>
+                    <input  placeholder='Line of Business' onChange={(e) => setLineofBusiness(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
                     <label>Line of business of the company</label>
-                    <input required placeholder='Address' onChange={(e) => setAddress(e.target.value)}/>
+                    <input  placeholder='Address' onChange={(e) => setAddress(e.target.value)}/>
                 </Form.Field>
                 {/* <Form.Field>
                     <Checkbox label='I agree to the Terms and Conditions' onChange={(e) => setCheckbox(!checkbox)}/>
